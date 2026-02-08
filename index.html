@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ColdChip GPU</title>
+  <meta name="description" content="ColdChip – grafické karty s vodním chlazením. Tichý provoz, nízké teploty a dlouhá životnost. Studentský projekt.">
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Lato, Inter, Roboto, "Open Sans", Helvetica, sans-serif;
+      background: rgb(8, 18, 30);
+      color: rgb(209, 255, 253);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgb(10, 25, 45);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: rgb(0, 220, 255);
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: white;
+      opacity: 0.8;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      color: rgb(0, 220, 255);
+    }
+
+    section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: auto;
+      scroll-margin-top: 100px;
+    }
+
+    .hero {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      color: rgb(0, 220, 255);
+      font-size: 42px;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 375px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .product {
+      background: rgb(12, 28, 50);
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgb(0,220,255);
+      color: black;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: rgb(0,220,255);
+      margin-top: 10px;
+    }
+
+    .specs {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 10px;
+    }
+
+    .trust {
+      font-size: 13px;
+      margin-top: 10px;
+      opacity: 0.7;
+    }
+
+    .rating {
+      margin-top: 10px;
+      font-size: 14px;
+      color: rgb(255, 215, 0);
+    }
+
+    .product h3 {
+      color: rgb(0,220,255);
+    }
+
+    .product button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: rgb(0,220,255);
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .product button:hover:not(:disabled) {
+      background: rgb(150,240,255);
+    }
+
+    .product button:disabled {
+      background: #555;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .about, .contact {
+      background: rgb(10, 22, 40);
+      border-radius: 12px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; }
+      .shop-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ColdChip</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#Otazky">Questions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-text">
+    <h1>Už vás nebaví vysoké teploty?</h1>
+    <p>
+      ColdChip grafické karty jsou ručně upravené GPU s vodním chlazením, kde nejde jen o vzhled,
+      ale hlavně o funkci. Každý kus je individuálně testovaný a taktovaný tak, aby běžel
+      stabilně, tiše a dlouhodobě bez zbytečného stresu pro čip.
+      <br><br>
+      Dostaneš kartu připravenou k použití, s výrazně nižšími teplotami než u klasického
+      vzduchového chlazení.
+    </p>
+    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'});" 
+        style="margin-top:20px; padding:12px 24px; font-size:16px; border-radius:8px; font-weight:bold; background: rgb(0,220,255); color:black; border:none; cursor:pointer;">
+  Podívej se na produkty
+</button>
+  </div>
+  <img src="images/GPU1.jpg" alt="Grafická karta ColdChip" class="product-img" loading="lazy">
+</section>
+
+<section id="shop">
+  <h2 style="color:rgb(0,220,255)">Shop</h2>
+
+  <div class="shop-grid">
+    <div class="product">
+      <div class="badge">Top produkt</div>
+      <img src="images/GPU2.jpg" alt="ColdChip GTX 1650S" class="product-img" loading="lazy">
+      <h3>ColdChip GTX 1650S</h3>
+      <p>
+        Ručně upravená GTX 1650 Super s vodním chlazením. Zaměřeno na tichý chod, nízké teploty a stabilní výkon.
+      </p>
+
+      <div class="specs">
+        • Vodní chlazení<br>
+        • Individuálně testovaná<br>
+        • Stabilní OC profil<br>
+      </div>
+
+      <div class="price">5 990 Kč</div>
+
+      <div class="rating">
+        ⭐⭐⭐⭐☆ (4/5)
+      </div>
+
+      <div class="trust">
+        ✔ Zátěžově testováno<br>
+        ✔ Bezpečné teploty<br>
+        ✔ Ověřeno komunitou<br>
+      </div>
+
+      <button onclick="buy('ColdChip GTX 1650S')">Koupit</button>
+    </div>
+
+    <div class="product">
+      <img src="images/GPU3.jpg" alt="GPU není skladem" class="product-img" loading="lazy">
+      <h3>Karty nejsou skladem</h3>
+      <p>Karty momentálně nejsou k dispozici.</p>
+      <button disabled>Není skladem</button>
+    </div>
+
+    <div class="product">
+      <img src="images/GPU4.jpg" alt="GPU není skladem" class="product-img" loading="lazy">
+      <h3>Karty nejsou skladem</h3>
+      <p>Karty momentálně nejsou k dispozici.</p>
+      <button disabled>Není skladem</button>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2 style="color:rgb(0,220,255)">About Us</h2>
+  <p>
+    ColdChip je studentský projekt zaměřený na úpravu grafických karet s důrazem
+    na chlazení, ticho a dlouhodobou stabilitu.
+  </p>
+  <p>
+    Nehoníme extrémní benchmarky, ale reálný použití bez throttlingu a hluku.
+  </p>
+</section>
+<section id="Otazky" class="Otazky">
+  <h2 style="color:rgb(0,220,255)">Nejčastější otázky</h2>
+  <p>
+    <strong>Jaké karty upravujete?</strong><br>
+    Momentálně se zaměřujeme na GTX 1650 Super, ale plánujeme rozšířit nabídku o další modely.
+    <br><br>
+    <strong>Je vodní chlazení bezpečné?</strong><br>
+    Ano, používáme kvalitní komponenty a každou kartu testujeme zátěžově, aby byla zajištěna stabilita a bezpečné teploty.
+    <br><br>
+    <strong>Jak dlouho trvá úprava karty?</strong><br>
+    Proces úpravy a testování trvá obvykle 1-2 týdny v závislosti na aktuální poptávce.
+    <br><br>
+    <strong>Vyplatí se Vaše karty?</strong><br>
+    <p><strong>Ano</strong>, Naším vodním chlazením <strong>snížíme teploty o 15-20 °C, zlepšíme výkon a zvýšíme životnost karty.</strong><br>
+    <strong>Taky vylepšíme poměr Cena ku Výkonu, proto je výhodnější si koupit Naši starší kartu, než novější model za stejnou cenu.</strong></p>
+  </p>
+</section>
+
+<section id="contact" class="contact">
+  <h2 style="color:rgb(0,220,255)">Objednávka</h2>
+
+  <form action="https://formspree.io/f/xvzboovr" method="POST" style="max-width:500px; margin:auto;">
+    <input type="hidden" name="product" id="productField">
+
+    <label>Jméno</label>
+    <input type="text" name="name" placeholder="Vaše jméno" required>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Váš email" required>
+
+    <label>Zpráva / adresa</label>
+    <textarea name="message" rows="4" placeholder="Zpráva / adresa"></textarea>
+
+    <button type="submit" style="margin-top:15px;">
+      Odeslat objednávku
+    </button>
+  </form>
+
+  <p style="text-align:center; margin-top:20px;">
+    📧 coldchipgpu@gmail.com
+  </p>
+</section>
+
+<footer>
+  © 2026 ColdChip
+</footer>
+
+<script>
+  function buy(product) {
+    document.getElementById('productField').value = product;
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  }
+</script>
+
+</body>
+</html>
