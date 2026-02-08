@@ -179,24 +179,25 @@
 
     /* --- NOVÉ PRO WELCOME EFEKT --- */
     #welcome {
-      min-height: 55vh;           /* celá obrazovka */
+      min-height: 55vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* posun textu výš */
+      justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding-top: 20vh;           /* text výš */
+      padding-top: 20vh;
       overflow: hidden;
     }
 
-    #welcome h1, #welcome p {
+    #welcome h1, #welcome p, #welcome button {
       opacity: 0;
       transform: scale(0.95);
       transition: opacity 1.5s ease, transform 1.5s ease;
     }
 
     #welcome.visible h1,
-    #welcome.visible p {
+    #welcome.visible p,
+    #welcome.visible button {
       opacity: 1;
       transform: scale(1);
     }
@@ -241,8 +242,8 @@
     </p>
     <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'});" 
         style="margin-top:20px; padding:12px 24px; font-size:16px; border-radius:8px; font-weight:bold; background: rgb(0,220,255); color:black; border:none; cursor:pointer;">
-  Podívej se na produkty
-</button>
+      Podívej se na produkty
+    </button>
   </div>
   <img src="images/GPU1.jpg" alt="Grafická karta ColdChip" class="product-img" loading="lazy">
 </section>
@@ -252,43 +253,44 @@
 
   <div class="shop-grid">
     <div class="product">
-  <div style="position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
-    <div style="background:red; color:white; padding:5px 10px; border-radius:6px; font-weight:bold; font-size:12px;">
-      Připravujeme
+      <div style="position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+        <div style="background:red; color:white; padding:5px 10px; border-radius:6px; font-weight:bold; font-size:12px;">
+          Připravujeme
+        </div>
+        <div style="color:rgb(0,220,255); font-weight:bold; font-size:14px; text-align:center; flex-grow:1;">
+          ColdChip GTX 1650S
+        </div>
+        <div style="background:rgb(0,220,255); color:black; padding:5px 10px; border-radius:6px; font-weight:bold; font-size:12px;">
+          Top produkt
+        </div>
+      </div>
+
+      <img src="images/GPU2.jpg" class="product-img" alt=" " loading="lazy">
+      <p>
+        Ručně upravená GTX 1650 Super s vodním chlazením. Zaměřeno na tichý chod, nízké teploty a stabilní výkon.
+      </p>
+
+      <div class="specs">
+        • Vodní chlazení<br>
+        • Individuálně testovaná<br>
+        • Stabilní OC profil<br>
+      </div>
+
+      <div class="price">5 990 Kč</div>
+
+      <div class="rating">
+        ⭐⭐⭐⭐☆ (4/5)
+      </div>
+
+      <div class="trust">
+        ✔ Zátěžově testováno<br>
+        ✔ Bezpečné teploty<br>
+        ✔ Ověřeno komunitou<br>
+      </div>
+
+      <button onclick="buy('ColdChip GTX 1650S')">Předobjednat</button>
     </div>
-    <div style="color:rgb(0,220,255); font-weight:bold; font-size:14px; text-align:center; flex-grow:1;">
-      ColdChip GTX 1650S
-    </div>
-    <div style="background:rgb(0,220,255); color:black; padding:5px 10px; border-radius:6px; font-weight:bold; font-size:12px;">
-      Top produkt
-    </div>
-  </div>
 
-  <img src="images/GPU2.jpg" class="product-img" alt=" " loading="lazy">
-  <p>
-    Ručně upravená GTX 1650 Super s vodním chlazením. Zaměřeno na tichý chod, nízké teploty a stabilní výkon.
-  </p>
-
-  <div class="specs">
-    • Vodní chlazení<br>
-    • Individuálně testovaná<br>
-    • Stabilní OC profil<br>
-  </div>
-
-  <div class="price">5 990 Kč</div>
-
-  <div class="rating">
-    ⭐⭐⭐⭐☆ (4/5)
-  </div>
-
-  <div class="trust">
-    ✔ Zátěžově testováno<br>
-    ✔ Bezpečné teploty<br>
-    ✔ Ověřeno komunitou<br>
-  </div>
-
-  <button onclick="buy('ColdChip GTX 1650S')">Předobjednat</button>
-</div>
     <div class="product">
       <img src="images/GPU3.jpg" alt="GPU není skladem" class="product-img" loading="lazy">
       <h3>Karty nejsou skladem</h3>
@@ -315,6 +317,7 @@
     Nehoníme extrémní benchmarky, ale reálný použití bez throttlingu a hluku.
   </p>
 </section>
+
 <section id="Otazky" class="Otazky">
   <h2 style="color:rgb(0,220,255)">Nejčastější otázky</h2>
   <p>
@@ -369,7 +372,6 @@
   }
 </script>
 
-<!-- --- NOVÉ PRO WELCOME EFEKT --- -->
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const welcome = document.getElementById('welcome');
@@ -381,4 +383,3 @@
 
 </body>
 </html>
-
