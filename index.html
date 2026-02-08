@@ -179,7 +179,7 @@
 
     /* --- NOVÉ PRO WELCOME EFEKT --- */
     #welcome {
-      min-height: 43vh;           /* celá obrazovka */
+      min-height: 55vh;           /* celá obrazovka */
       display: flex;
       flex-direction: column;
       justify-content: flex-start; /* posun textu výš */
@@ -218,10 +218,14 @@
 </header>
 
 <section id="welcome">
-  <h1 style="color:rgb(0,220,255)">ColdChip</h1>
-  <p>
+  <h1 style="color:rgb(0,220,255); font-size: 48px;">ColdChip</h1>
+  <p style="font-size: 20px;">
     Ručně upravené grafické karty s vodním chlazením.
   </p>
+  <button onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'});" 
+    style="margin:20px 0 0 0; padding:12px 12px; font-size:24px; border-radius:8px; font-weight:bold; background: rgb(0,220,255); color:black; border:none; cursor:pointer; display:block; margin-left:0; width:25%;">
+    Zjistit více.
+  </button>
 </section>
 
 <section id="home" class="hero">
@@ -368,3 +372,4 @@
 
 </body>
 </html>
+
