@@ -176,6 +176,30 @@
       .hero { flex-direction: column; }
       .shop-grid { grid-template-columns: 1fr; }
     }
+
+    /* --- NOVÉ PRO WELCOME EFEKT --- */
+    #welcome {
+      min-height: 43vh;           /* celá obrazovka */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* posun textu výš */
+      align-items: center;
+      text-align: center;
+      padding-top: 20vh;           /* text výš */
+      overflow: hidden;
+    }
+
+    #welcome h1, #welcome p {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+
+    #welcome.visible h1,
+    #welcome.visible p {
+      opacity: 1;
+      transform: scale(1);
+    }
   </style>
 </head>
 
@@ -184,6 +208,7 @@
 <header>
   <div class="logo">ColdChip</div>
   <nav>
+    <a href="#welcome">Welcome</a>
     <a href="#home">Home</a>
     <a href="#shop">Shop</a>
     <a href="#about">About</a>
@@ -191,6 +216,13 @@
     <a href="#contact">Contact</a>
   </nav>
 </header>
+
+<section id="welcome">
+  <h1 style="color:rgb(0,220,255)">ColdChip</h1>
+  <p>
+    Ručně upravené grafické karty s vodním chlazením.
+  </p>
+</section>
 
 <section id="home" class="hero">
   <div class="hero-text">
@@ -322,6 +354,16 @@
     document.getElementById('productField').value = product;
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   }
+</script>
+
+<!-- --- NOVÉ PRO WELCOME EFEKT --- -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const welcome = document.getElementById('welcome');
+    setTimeout(() => {
+      welcome.classList.add('visible');
+    }, 300);
+  });
 </script>
 
 </body>
