@@ -214,7 +214,7 @@
     <a href="#shop">Shop</a>
     <a href="#about">About</a>
     <a href="#Otazky">Questions</a>
-    <a href="order.html">Contact</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -288,8 +288,7 @@
         ✔ Ověřeno komunitou<br>
       </div>
 
-      <button onclick="window.location.href='order.html';">Předobjednat</button>
-
+      <button onclick="buy('ColdChip GTX 1650S')">Předobjednat</button>
     </div>
 
     <div class="product">
@@ -336,6 +335,26 @@
     <strong>Taky vylepšíme poměr Cena ku Výkonu, proto je výhodnější si koupit Naši starší kartu, než novější model za stejnou cenu.</strong></p>
   </p>
 </section>
+
+<section id="contact" class="contact">
+  <h2 style="color:rgb(0,220,255)">Objednávka</h2>
+
+  <form action="https://formspree.io/f/xvzboovr" method="POST" style="max-width:500px; margin:auto;">
+    <input type="hidden" name="product" id="productField">
+
+    <label>Jméno</label>
+    <input type="text" name="name" placeholder="Vaše jméno" required>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Váš email" required>
+
+    <label>Zpráva / adresa</label>
+    <textarea name="message" rows="4" placeholder="Zpráva / adresa"></textarea>
+
+    <button type="submit" style="margin-top:15px;">
+      Odeslat objednávku
+    </button>
+  </form>
 
   <p style="text-align:center; margin-top:20px;">
     📧 coldchipgpu@gmail.com
