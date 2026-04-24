@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function(){
         accomContainer.removeAttribute('hidden');
         accomContainer.setAttribute('aria-hidden', 'false');
         toggleBtn.setAttribute('aria-expanded', 'true');
-        toggleBtn.textContent = 'Skrýt mapu ubytování';
+        toggleBtn.textContent = 'Skrýt blízká ubytování';
         accomContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         accomContainer.setAttribute('hidden', '');
         accomContainer.setAttribute('aria-hidden', 'true');
         toggleBtn.setAttribute('aria-expanded', 'false');
-        toggleBtn.textContent = 'Zobrazit mapu ubytování';
+        toggleBtn.textContent = 'Zobrazit blízká ubytování';
       }
     });
   }
