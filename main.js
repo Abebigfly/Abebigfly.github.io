@@ -35,4 +35,25 @@ document.addEventListener('DOMContentLoaded', function(){
       window.scrollTo({top,behavior:'smooth'});
     });
   });
+
+  // Accommodation image toggle button
+  const toggleBtn = document.getElementById('toggle-accom-image');
+  const accomContainer = document.getElementById('accom-image-container');
+  if (toggleBtn && accomContainer) {
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = accomContainer.hasAttribute('hidden');
+      if (isHidden) {
+        accomContainer.removeAttribute('hidden');
+        accomContainer.setAttribute('aria-hidden', 'false');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        toggleBtn.textContent = 'Skrýt mapu ubytování';
+        accomContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        accomContainer.setAttribute('hidden', '');
+        accomContainer.setAttribute('aria-hidden', 'true');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.textContent = 'Zobrazit mapu ubytování';
+      }
+    });
+  }
 });
