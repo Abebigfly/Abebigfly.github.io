@@ -46,7 +46,7 @@
 
       <section id="location" class="panel panel--white">
         <div class="container">
-          <h2 class="section-title">Lokace</h2>
+          <h2 class="section-title">Místo</h2>
           <p class="lead">Celé svatební odpoledne proběhne na Pastušce v Brodu nad Dyjí.</p>
           <p class="lead">Jak se tam dostat: z Brna směrem na Znojmo, sjezd na Brod nad Dyjí — následovat značení k Pastušce.</p>
           <p class="lead">Adresa: Pastuška, Brod nad Dyjí, 671 02</p>
@@ -82,12 +82,14 @@
       <section id="accommodation" class="panel panel--beige">
         <div class="container">
           <h2 class="section-title">Ubytování</h2>
-          <p class="lead">Pokud byste se chtěli ubytovat poblíž, níže najdete seznam možných ubytování.</p>
-          <ul class="list-clean">
-            <li>Apartmán Pálavská brána</li> <p class="muted"><a href="https://maps.app.goo.gl/tE19QLGPMCCegLgu7" target="_blank" rel="noopener noreferrer">Zobrazit na mapě</a></p>
-            <li>Penzion Janota</li> <p class="muted"><a href="https://maps.app.goo.gl/gD7tSdcMeU7njTST9" target="_blank" rel="noopener noreferrer">Zobrazit na mapě</a></p>
-            <li>Penzion Proneco</li> <p class="muted"><a href="https://maps.app.goo.gl/YQNGbWsnk7hjZQEy5" target="_blank" rel="noopener noreferrer">Zobrazit na mapě</a></p>
-          </ul>
+
+          <p>
+            <button id="toggle-accom-image" class="button-cta" type="button" aria-expanded="false">Zobrazit blízká ubytování</button>
+          </p>
+
+          <div id="accom-image-container" class="photo-placeholder has-image" hidden aria-hidden="true">
+            <img id="accom-image" src="ubytování.png" alt="Mapa ubytování" loading="lazy" />
+          </div>
         </div>
       </section>
 
@@ -97,6 +99,7 @@
           <p class="lead">
             Parkování je zajištěno přímo u Pastušky.<br>
             Většina aktivit bude probíhat na zahradě.<br>
+            Svatba bude v barvách béžová a tmavě modrá.<br>
           </p>
         </div>
       </section>
@@ -104,7 +107,7 @@
       <section id="rsvp" class="panel panel--beige">
         <div class="container">
           <h2 class="section-title">RSVP / Dotazník</h2>
-          <p class="lead">Potvrďte prosím svou účast a případné dietní omezení prostřednictvím krátkého formuláře.</p>
+          <p class="lead">Potvrďte prosím svou účast a případné dietní omezení prostřednictvím formuláře.</p>
           <p>
             <a class="button-cta" href="https://example.com/rsvp" target="_blank" rel="noopener noreferrer">Vyplnit RSVP formulář</a>
           </p>
