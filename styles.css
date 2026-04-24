@@ -1,0 +1,60 @@
+/* Minimal elegant styles for wedding one-page */
+:root{
+  --color-navy: #0b2140;
+  --color-beige: #fbefe7;
+  --max-width: 760px;
+  --nav-height: 72px;
+  --transition: 200ms ease;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Playfair Display', Georgia, serif;color:var(--color-navy);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#ffffff}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 1.25rem}
+
+/* Top navigation (semi-transparent, subtle) */
+.top-nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.78);backdrop-filter:blur(6px);border-bottom:1px solid rgba(11,33,64,0.06);z-index:100}
+.nav-inner{height:var(--nav-height);display:flex;align-items:center;justify-content:center}
+.nav-list{list-style:none;display:flex;gap:1.05rem;margin:0;padding:0;align-items:center}
+.nav-list a{color:var(--color-navy);text-decoration:none;font-size:0.95rem;letter-spacing:0.12em;padding:0.5rem;transition:color var(--transition),opacity var(--transition)}
+.nav-list a.cta{border:1px solid var(--color-navy);padding:0.45rem 0.9rem;border-radius:6px;font-weight:600;background:transparent}
+.nav-list a:hover,.nav-list a.active{opacity:0.9}
+
+main{margin-top:calc(var(--nav-height) + 18px)}
+
+.panel{padding:clamp(3rem,10vh,8rem) 0;scroll-margin-top:calc(var(--nav-height) + 12px);text-align:center}
+.panel--beige{background:var(--color-beige)}
+
+.names{font-family:'Great Vibes',cursive;font-size:clamp(2.6rem,8vw,6rem);margin:0;color:var(--color-navy);line-height:1;letter-spacing:0.01em}
+.date{margin-top:0.85rem;margin-bottom:0.25rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;font-size:0.92rem}
+.subtitle{margin-top:0.8rem;color:var(--color-navy);letter-spacing:0.14em;text-transform:uppercase;font-size:0.95rem}
+
+.section-title{font-size:1.1rem;letter-spacing:0.22em;text-transform:uppercase;margin:0 0 1.25rem 0}
+.lead{max-width:68ch;margin:0 auto 1.25rem;color:rgba(11,33,64,0.9);line-height:1.7}
+.placeholder{opacity:0.95}
+
+.schedule-list{max-width:720px;margin:1rem auto 0;display:grid;gap:1.1rem 2rem;justify-items:start}
+.schedule-list .row{display:grid;grid-template-columns:100px 1fr;gap:0.75rem;align-items:start}
+.time{font-variant:small-caps;opacity:0.9;letter-spacing:0.18em;font-weight:600}
+.details{text-align:left}
+
+.list-clean{list-style:none;padding:0;margin:1rem 0 0;text-align:left;display:inline-block}
+.list-clean li{margin:0.45rem 0}
+
+.button-cta{display:inline-block;text-decoration:none;color:var(--color-navy);border:1px solid var(--color-navy);padding:0.6rem 1rem;border-radius:8px;transition:transform var(--transition),background var(--transition)}
+.button-cta:hover{transform:translateY(-2px);background:rgba(11,33,64,0.03)}
+.muted{color:rgba(11,33,64,0.8);font-size:0.95rem}
+
+@media (max-width:700px){
+  .nav-list{gap:0.6rem}
+  .nav-list a{font-size:0.85rem;padding:0.35rem}
+  .names{font-size:clamp(2rem,12vw,3.6rem)}
+  .schedule-list .row{grid-template-columns:92px 1fr}
+  .container{padding:0 1rem}
+  main{margin-top:calc(var(--nav-height) + 8px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+
+a:focus{outline:2px solid rgba(11,33,64,0.12);outline-offset:3px}
