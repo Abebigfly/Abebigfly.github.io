@@ -51,7 +51,11 @@ main{margin-top:calc(var(--nav-height) + 18px)}
 
 /* Accommodation image wrapper for rectangular image (1000x707) */
 .accom-image-wrapper{max-width:1000px;margin:1rem auto 0;text-align:center}
+.accom-image-inner{position:relative;display:inline-block;width:100%}
 .accom-image-wrapper img{width:100%;height:auto;border-radius:12px;display:block}
+.download-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.9);color:var(--color-navy);width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--transition),transform var(--transition);box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.download-btn:hover{background:#fff;transform:scale(1.1)}
+.download-btn svg{width:20px;height:20px}
 
 /* Collapsible panels: smooth open/close using height + opacity. JS will
   set explicit height to the content height when opening/closing. */
