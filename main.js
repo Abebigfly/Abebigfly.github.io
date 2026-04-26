@@ -36,23 +36,148 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // Accommodation image toggle button
+  // Collapsible panels helper (smooth open/close)
+  function setupCollapsible(button, container, openLabel, closeLabel) {
+    const openClass = 'open';
+
+    // initialize aria and starting height
+    if (!container.classList.contains(openClass)) {
+      container.setAttribute('aria-hidden', 'true');
+      container.style.height = '0px';
+    } else {
+      container.setAttribute('aria-hidden', 'false');
+    }
+
+    // persistent transitionend handler to finalize open/close states
+    // use a flag to avoid re-entrant toggles while animating
+    container._isCollapsing = false;
+    container.addEventListener('transitionend', (e) => {
+      if (e.target !== container || e.propertyName !== 'height') return;
+      container._isCollapsing = false;
+      if (container.classList.contains(openClass)) {
+        // finished opening: remove explicit height so content can size naturally
+        container.style.height = 'auto';
+        // after open transition completes, ensure element is visible in viewport
+        try {
+          setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'center' }), 20);
+        } catch (err) {
+          // ignore environments where scrollIntoView may not be available
+        }
+      } else {
+        // finished closing: ensure aria is hidden
+        container.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    button.addEventListener('click', () => {
+      // prevent toggling while a previous transition is running
+      if (container._isCollapsing) return;
+      container._isCollapsing = true;
+
+      const isOpen = container.classList.contains(openClass);
+      if (!isOpen) {
+        // OPEN: temporarily remove height to calculate real height
+        container.style.height = 'auto';
+        const targetHeight = container.scrollHeight;
+        container.style.height = '0px';
+        // force reflow
+        container.offsetHeight;
+        // set to target height
+        container.style.height = targetHeight + 'px';
+        requestAnimationFrame(() => container.classList.add(openClass));
+        container.setAttribute('aria-hidden', 'false');
+        button.setAttribute('aria-expanded', 'true');
+        button.textContent = closeLabel;
+      } else {
+        // CLOSE: set current height then collapse to 0 to animate
+        container.style.height = container.scrollHeight + 'px';
+        container.offsetHeight; // force reflow
+        container.style.height = '0px';
+        container.classList.remove(openClass);
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = openLabel;
+      }
+    });
+    
+  }
+
+  // wire up accommodation and payment toggles
   const toggleBtn = document.getElementById('toggle-accom-image');
   const accomContainer = document.getElementById('accom-image-container');
   if (toggleBtn && accomContainer) {
-    toggleBtn.addEventListener('click', () => {
-      const isHidden = accomContainer.hasAttribute('hidden');
-      if (isHidden) {
-        accomContainer.removeAttribute('hidden');
-        accomContainer.setAttribute('aria-hidden', 'false');
-        toggleBtn.setAttribute('aria-expanded', 'true');
-        toggleBtn.textContent = 'Skrýt blízká ubytování';
-        accomContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setupCollapsible(toggleBtn, accomContainer, 'Zobrazit blízká ubytování', 'Skrýt blízká ubytování');
+  }
+
+  const paymentBtn = document.getElementById('show-payment');
+  const paymentInfo = document.getElementById('payment-info');
+  if (paymentBtn && paymentInfo) {
+    setupCollapsible(paymentBtn, paymentInfo, 'Zobrazit platební informace', 'Skrýt platební informace');
+  }
+
+  // Mobile nav toggle for small screens
+  const mobileToggle = document.getElementById('mobile-nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navList = navMenu ? navMenu.querySelector('.nav-list') : null;
+  if (mobileToggle && navList) {
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navList.classList.contains('open');
+      if (!isOpen) {
+        navList.classList.add('open');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+        navMenu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
       } else {
-        accomContainer.setAttribute('hidden', '');
-        accomContainer.setAttribute('aria-hidden', 'true');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        toggleBtn.textContent = 'Zobrazit blízká ubytování';
+        navList.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close mobile menu when a nav link is clicked
+    navList.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+      navList.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      navMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }));
+
+    // Ensure menu closes when resizing to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 700 && navList.classList.contains('open')) {
+        navList.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Copy-to-clipboard for IBAN
+  const copyBtn = document.getElementById('copy-iban');
+  const ibanText = document.getElementById('iban-text');
+  if (copyBtn && ibanText) {
+    copyBtn.addEventListener('click', async () => {
+      const text = ibanText.textContent.trim();
+      const prev = copyBtn.textContent;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        copyBtn.textContent = 'Zkopírováno';
+        copyBtn.disabled = true;
+        setTimeout(() => { copyBtn.textContent = prev; copyBtn.disabled = false; }, 2000);
+      } catch (err) {
+        // ignore
       }
     });
   }
