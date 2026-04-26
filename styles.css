@@ -30,7 +30,7 @@ html,body{height:100%;margin:0;font-family:'Playfair Display', Georgia, serif;co
 .top-nav{position:fixed;top:0;left:0;right:0;background:rgba(250,246,241,0.78);backdrop-filter:blur(6px);border-bottom:1px solid rgba(0,16,115,0.06);z-index:100}
 .nav-inner{height:var(--nav-height);display:flex;align-items:center;justify-content:center}
 .nav-list{list-style:none;display:flex;gap:1.05rem;margin:0;padding:0;align-items:center}
-.nav-list a{color:var(--color-navy);text-decoration:none;font-size:0.95rem;letter-spacing:0.12em;padding:0.5rem;transition:color var(--transition),opacity var(--transition)}
+.nav-list a{color:var(--color-navy);text-decoration:none;font-size:0.95rem;letter-spacing:0.12em;padding:0.5rem;transition:color var(--transition),opacity var(--transition);white-space:nowrap}
 .nav-list a.cta{border:1px solid var(--color-navy);padding:0.45rem 0.9rem;border-radius:6px;font-weight:600;background:transparent}
 .nav-list a:hover,.nav-list a.active{opacity:0.9}
 
@@ -52,6 +52,18 @@ main{margin-top:calc(var(--nav-height) + 18px)}
 /* Accommodation image wrapper for rectangular image (1000x707) */
 .accom-image-wrapper{max-width:1000px;margin:1rem auto 0;text-align:center}
 .accom-image-wrapper img{width:100%;height:auto;border-radius:12px;display:block}
+
+/* Collapsible panels: smooth open/close using height + opacity. JS will
+  set explicit height to the content height when opening/closing. */
+.collapsible{
+  height:0;
+  overflow:hidden;
+  opacity:0;
+  transition: height 320ms ease, opacity 240ms ease;
+  will-change: height, opacity;
+}
+.collapsible.open{opacity:1}
+.copy-cta{margin-left:0.6rem;padding:0.38rem 0.6rem;font-size:0.9rem;border-radius:6px}
 .date{margin-top:0.85rem;margin-bottom:0.25rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;font-size:0.92rem}
 .subtitle{margin-top:0.8rem;color:var(--color-navy);letter-spacing:0.14em;text-transform:uppercase;font-size:0.95rem}
 
@@ -72,8 +84,27 @@ main{margin-top:calc(var(--nav-height) + 18px)}
 .muted{color:rgba(0,16,115,0.8);font-size:0.95rem}
 
 @media (max-width:700px){
+  .nav-inner{justify-content:space-between}
+  .mobile-toggle{display:inline-flex;background:var(--color-beige);border:0;padding:0.45rem;border-radius:8px;align-items:center;justify-content:center;border:1px solid rgba(0,16,115,0.06)}
+  .hamburger{width:22px;height:2px;background:var(--color-navy);display:inline-block;position:relative;transition:background 180ms ease}
+  .hamburger::before,.hamburger::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--color-navy);transition:transform 200ms ease,top 200ms ease,opacity 180ms ease}
+  .hamburger::before{top:-6px}
+  .hamburger::after{top:6px}
+  .mobile-toggle[aria-expanded="true"] .hamburger{background:transparent}
+  .mobile-toggle[aria-expanded="true"] .hamburger::before{transform:rotate(45deg);top:0}
+  .mobile-toggle[aria-expanded="true"] .hamburger::after{transform:rotate(-45deg);top:0}
+
   .nav-list{gap:0.6rem}
   .nav-list a{font-size:0.85rem;padding:0.35rem}
+  /* mobile: animate nav open/close with max-height + opacity */
+  .nav-list{
+    display:flex;flex-direction:column;gap:0.6rem;padding:0 1rem;margin:0;background:var(--color-white);position:absolute;left:0;right:0;top:var(--nav-height);border-bottom:1px solid rgba(0,16,115,0.06);z-index:99;align-items:center;
+    max-height:0;overflow:hidden;opacity:0;transition:max-height 360ms ease,opacity 260ms ease,padding 240ms ease;pointer-events:none
+  }
+  .nav-list.open{max-height:60vh;opacity:1;padding:0.6rem 1rem;pointer-events:auto}
+  .nav-list a{width:100%;text-align:center;border-top:1px solid rgba(0,16,115,0.03);white-space:nowrap}
+  .nav-list a.cta{margin:0.4rem 0}
+
   .names{font-size:clamp(2rem,12vw,3.6rem)}
   .schedule-list .row{grid-template-columns:92px 1fr}
   .container{padding:0 1rem}
